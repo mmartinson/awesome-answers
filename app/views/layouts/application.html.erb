@@ -6,21 +6,34 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="animated fadeIn">
 
-  <nav>
-    <ul>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <%= link_to "#{icon('fa fa-rebel')} Awesome Answers!".html_safe, questions_path, class: "navbar-brand", id: "brand" %>
+  </nav>
+  <div id="nav-under"> 
+    <ul class="nav nav-pills">
+
       <li>
-        <!-- <a href="/">Home</a> -->
-        <%= link_to "Home", root_path, {class: "btn btn-primary"} %>
+        <%= link_to "Home", root_path%>
       </li>
       <li>
-        <%= link_to "FAQ", faq_path(anchor: "question_3"), {class: "btn btn-primary"} %>
+        <%= link_to "FAQ", faq_path %>
+      </li>
+      <li>
+        <%= link_to "New Question", new_question_path %>
       </li>
     </ul>
-  </nav>
-  <hr>
-  <%= yield %>
-
+  </div>
+  <div class="container">
+    <div class="row">
+      <% if flash[:notice] %>  
+      <p class="alert alert-success"><%= flash[:notice] %></p>
+      <% elsif flash[:alert] %>
+      <p class="alert alert-danger"><%= flash[:alert] %></p>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
 </body>
 </html>

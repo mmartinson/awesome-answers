@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
 
+  #resources :questions     ###this will create crud routes by default 
+
+  get '/questions' => 'questions#index'
+  post '/questions' => 'questions#create'
+  get "/questions/:id" => 'questions#show', as: :question
+  get '/question/new' => 'questions#new', as: :new_question
+  get '/questions/:id/edit' => 'questions#edit', as: :edit_question
+  patch '/questions/:id' => 'questions#update'
+  delete '/questions/:id' => 'questions#destroy', as: :destroy_question
+
   #can change the helper by including  ", as: some_other_name"
   #gets you some_other_name_path
   get '/welcome' => 'welcome#index'
   get '/faq' => 'welcome#faq'
-  root 'welcome#index'
+  root 'questions#index'
 
 
 

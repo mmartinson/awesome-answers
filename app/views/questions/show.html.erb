@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="col-md-2 col-xs-0"></div> 
+  <div class="col-med-8 col-xs-12">
+    
+    <h1><%= @question.title %></h1>
+    <br>
+    <p><%= @question.description %></p>
+    <%= link_to "Edit", edit_question_path(@question) %>
+    <%= link_to "Delete", destroy_question_path(@question), method: "delete" %>
+    <!-- button_to is another opt-->
+
+
+  </div>
+  <div class="col-md-2 col-xs-0"></div>
+</div>

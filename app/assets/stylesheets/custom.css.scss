@@ -1,0 +1,39 @@
+#brand {
+  color: #ffffff;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+
+#main-container {
+  padding-top: 110px;  
+}
+
+#red-box  {
+  height: 70%;
+  width: 30%;
+  padding-top: 120px;
+  padding-left: 70px;
+  position: absolute;
+  z-index: +3;
+}
+
+#nav-under {
+  background-color: #990000;
+  padding-top: 50px
+}
+
+$navbar_default_link_color: #FFF;
+$navbar-default-link-active-color: #fff;
+$navbar-default-link-color: #fff;
+$navbar-default-bg: #009933;
+$nav-link-padding: 10px 20px;
+
+
+
+
+ 
