@@ -25,7 +25,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'bootstrap-sass', '~>3.2.0'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'font-awesome-rails'
 gem "animate-rails"
+gem 'haml-rails'
+gem 'slim'
 
 
 gem 'faker'
@@ -34,9 +37,13 @@ gem 'faker'
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem "interactive_editor"
+  gem 'interactive_editor'
   gem 'hirb'
   gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'pry-rails'
 end
 
 

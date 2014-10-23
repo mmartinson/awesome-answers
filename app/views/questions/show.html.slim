@@ -1,0 +1,33 @@
+.container
+  .col-md-2.col-xs-0
+  .col-med-8.col-xs-12
+    h2.weak-header Question 
+    = link_to "<sup class='h5'>#{fa_icon('times')}</sup>".html_safe, question_path(@question), method: 'delete', class: "hanging-icon-links", id: "delete-icon"
+    p.weak-header  &nbsp
+    = link_to "<sup class='h5'>#{fa_icon('edit')}</sup>".html_safe, edit_question_path(@question), id: 'edit-icon'
+    br
+    h3= @question.title
+    br
+    p= @question.description
+    br
+    br
+
+    .answer-form
+      = form_for [@question, @answer] do |f|
+        .form-group
+          = f.label :body, "Enter answer:"
+          = f.text_area :body, rows: 3, class: "form-control"        
+        .form-group
+          = f.submit "Post"
+    br
+    br
+    h2 Answers
+    well
+      - @question.answers.each do |answer| 
+        p
+          = link_to '<i></i>'.html_safe, question_answer_path(@question, answer), method: 'delete', data: {confirm: "Definitely delete? You can't take this back!"}, class: "glyphicon glyphicon-remove"
+          |   
+          = answer.body
+    .col-md-2.col-xs-0
+
+  / {question_id: 33, answer_id: 2345}  can be passed alternatively to question_answer_path

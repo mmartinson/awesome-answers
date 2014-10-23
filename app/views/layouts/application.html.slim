@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title AwesomeAnswers
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body.animated.fadeIn
+    nav.navbar.navbar-fixed-top.navbar-inverse
+      = link_to "#{fa_icon('rebel')} Awesome Answers #{fa_icon('rebel')}".html_safe, questions_path, class: "navbar-brand", id: "brand"
+    #nav-under
+      ul.nav.nav-pills
+        li
+          = link_to "Home", root_path
+        li
+          = link_to "FAQ", faq_path
+        li
+          = link_to "New Question", new_question_path
+    br
+      .container
+        .row
+          - if flash[:notice]
+            p.alert.alert-success= flash[:notice]
+          - elsif flash[:alert]
+            p.alert.alert-danger= flash[:alert]
+        = yield
+

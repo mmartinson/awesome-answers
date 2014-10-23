@@ -2,13 +2,17 @@ Rails.application.routes.draw do
 
   #resources :questions     ###this will create crud routes by default 
 
-  get '/questions' => 'questions#index'
-  post '/questions' => 'questions#create'
-  get "/questions/:id" => 'questions#show', as: :question
-  get '/question/new' => 'questions#new', as: :new_question
-  get '/questions/:id/edit' => 'questions#edit', as: :edit_question
-  patch '/questions/:id' => 'questions#update'
-  delete '/questions/:id' => 'questions#destroy', as: :destroy_question
+  # get '/questions' => 'questions#index'
+  # post '/questions' => 'questions#create'
+  # get "/questions/:id" => 'questions#show', as: :question
+  # get '/question/new' => 'questions#new', as: :new_question
+  # get '/questions/:id/edit' => 'questions#edit', as: :edit_question
+  # patch '/questions/:id' => 'questions#update'
+  # delete '/questions/:id' => 'questions#destroy', as: :destroy_question
+
+  resources :questions do 
+    resources :answers, only: [:create, :destroy]
+  end
 
   #can change the helper by including  ", as: some_other_name"
   #gets you some_other_name_path
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
   get '/faq' => 'welcome#faq'
   root 'questions#index'
 
+end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -72,4 +77,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

@@ -1,0 +1,4 @@
+- @questions.each do |question|
+  = link_to question.title, question
+  p= question.description.to_s.truncate(50)+'...'
+  hr
