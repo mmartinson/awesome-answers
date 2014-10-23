@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :find_question, only: [:show, :update, :edit, :destroy]
+  before_action :find_categories
 
   def index
     @questions=Question.recent
@@ -53,6 +54,10 @@ class QuestionsController < ApplicationController
     @question = Question.find params[:id]
   end
 
+  def find_categories
+    @categories = Category.order(:name)
+  end
+  
   def question_params
     params.require(:question).permit(:title, :description, :category_id)
   end

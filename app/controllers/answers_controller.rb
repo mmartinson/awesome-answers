@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_action :find_categories
 
   def create
     @question = Question.find params[:question_id]

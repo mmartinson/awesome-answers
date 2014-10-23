@@ -1,6 +1,6 @@
 
 
-#brand {
+.brand-custom {
   color: #ffffff;
 }
 
@@ -47,6 +47,17 @@
 
 #delete-icon {
   color: #990000;
+}
+
+#categories-dropdown {
+  color: white;
+  vertical-align: middle;
+  margin-top: 4px;
+}
+
+#categories-nav {
+  margin-top: 1%;
+  margin-right: 1%;
 }
 
 $navbar_default_link_color: #FFF;

@@ -7,17 +7,27 @@ html
     = csrf_meta_tags
   body.animated.fadeIn
     nav.navbar.navbar-fixed-top.navbar-inverse
-      = link_to "#{fa_icon('rebel')} Awesome Answers #{fa_icon('rebel')}".html_safe, questions_path, class: "navbar-brand", id: "brand"
+      = link_to "#{fa_icon('rebel')} Awesome Answers #{fa_icon('rebel')}".html_safe, questions_path, class: "navbar-brand brand-custom"
+      .pull-right#categories-nav
+        a.dropdown-toggle#categories-dropdown.h4 type="button" data-toggle="dropdown" 
+          | Categories
+          span.caret
+        ul.dropdown-menu.dropdown-right role="menu" aria-labelledby="categories-dropdown"
+          - @categories.each do |category|
+            = link_to category.name, category
+            br
+
     #nav-under
       ul.nav.nav-pills
         li
-          = link_to "Home", root_path
+          = link_to "Home", root_path, class: "h5 brand-custom" 
         li
-          = link_to "FAQ", faq_path
+          = link_to "FAQ", faq_path, class: "h5 brand-custom"
         li
-          = link_to "New Question", new_question_path
+          = link_to "New Question", new_question_path, class: "h5 brand-custom"
         li
-          = link_to "Categories", categories_path
+          = link_to "Categories", categories_path, class: "h5 brand-custom"
+        
     br
       .container
         .row
