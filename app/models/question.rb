@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy  #could be :nullify instead of destroy
+  belongs_to :category
   validates :title, presence: true, uniqueness: {case_sensitive: false}    #can also pass => presence: {"message" => "title must be provided"} 
   validates :view_count, numericality: true    #can also pass numericality: {greater_than_or_equal_to: 0}
   # validates :title_is_longer_than_one_character

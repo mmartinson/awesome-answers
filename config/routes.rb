@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get '/questions/:id/edit' => 'questions#edit', as: :edit_question
   # patch '/questions/:id' => 'questions#update'
   # delete '/questions/:id' => 'questions#destroy', as: :destroy_question
-
+  resources :categories, only: [:index, :show]
   resources :questions do 
     resources :answers, only: [:create, :destroy]
   end

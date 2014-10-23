@@ -28,7 +28,7 @@ gem 'font-awesome-sass', '~> 4.2.0'
 gem 'font-awesome-rails'
 gem "animate-rails"
 gem 'haml-rails'
-gem 'slim'
+gem 'slim-rails'
 
 
 gem 'faker'
@@ -44,6 +44,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
   gem 'pry-rails'
+  gem 'rails-erd'
 end
 
 

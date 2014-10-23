@@ -7,4 +7,10 @@
       label Description
       = f.text_area :description, rows: 5, class: "form-control"
     .form-group
-      = f.submit "#{@question.persisted? ? 'Update' : 'Create'}"
+      = f.label :category_id
+      = f.select :category_id, options_for_select(Category.order(:name).map {|c| [c.name, c.id]}, @question.category_id), class: "form-control" 
+    .form-group
+      = f.submit "#{@question.persisted? ? 'Update' : 'Create'}", class: "btn btn-primary"
+
+/ see f.collection_select for a similar helper that can be easier to write. See rails api docs.
+
