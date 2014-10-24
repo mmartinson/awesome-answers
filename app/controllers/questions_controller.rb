@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:edit, :show]
   before_action :find_question, only: [:show, :update, :edit, :destroy]
+  before_action :check_permissions, only: [:edit, :update, :destroy]
 
   def index
     @questions=Question.recent
@@ -8,6 +9,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new question_params
+    @question.user = current_user
     if @question.save 
       # flash[:notice]= "Question saved"
       # redirect_to question_path(@question)
@@ -26,9 +28,7 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
-  def edit
-    @question = Question.find(params[:id])
-  end
+  def edit; end
 
   def update
     if @question.update(question_params)
@@ -56,6 +56,10 @@ class QuestionsController < ApplicationController
   
   def question_params
     params.require(:question).permit(:title, :description, :category_id)
+  end
+
+  def check_permissions 
+    redirect_to root_path, alert: "Access Denied" unless current_user == @question.user
   end
 end
 

@@ -2,9 +2,11 @@
   .col-md-2.col-xs-0
   .col-med-8.col-xs-12
     h2.weak-header Question 
-    = link_to "<sup class='h5'>#{fa_icon('times')}</sup>".html_safe, question_path(@question), method: 'delete', class: "hanging-icon-links", id: "delete-icon"
-    p.weak-header  &nbsp
-    = link_to "<sup class='h5'>#{fa_icon('edit')}</sup>".html_safe, edit_question_path(@question), id: 'edit-icon'
+    - if user_signed_in? && current_user == @question.user
+      = link_to "<sup class='h5'>#{fa_icon('times')}</sup>".html_safe, question_path(@question), method: 'delete', class: "hanging-icon-links", id: "delete-icon"
+      p.weak-header  &nbsp
+      = link_to "<sup class='h5'>#{fa_icon('edit')}</sup>".html_safe, edit_question_path(@question), id: 'edit-icon'
+    h5 Created by #{question_user_display(@question)}
     br
     h3= @question.title
     br
@@ -28,7 +30,7 @@
         p
           = link_to '<i></i>'.html_safe, question_answer_path(@question, answer), method: 'delete', data: {confirm: "Definitely delete? You can't take this back!"}, class: "glyphicon glyphicon-remove"
           |   
-          = answer.body
+          h4 = answer.body + "  Submitted by #{answer_user_display(answer)}"
     .col-md-2.col-xs-0
 
   / {question_id: 33, answer_id: 2345}  can be passed alternatively to question_answer_path

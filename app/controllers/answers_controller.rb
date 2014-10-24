@@ -1,10 +1,12 @@
 class AnswersController < ApplicationController
-  before_action :find_categories
+  before_action :find_answer
+  before_action :check_permissions, only: [:edit, :update, :destroy]
 
   def create
     @question = Question.find params[:question_id]
     @answer = Answer.new answer_params
     @answer.question = @question
+    @answer.user = current_user
     if @answer.save
       redirect_to @question, notice: "Answer created"
     else
@@ -32,7 +34,15 @@ class AnswersController < ApplicationController
 
   private 
 
+  def find_answer
+    @answer = Answer.find params[:id]
+  end
+
   def answer_params 
     params.require(:answer).permit(:body)
+  end
+
+  def check_permissions
+    redirect_to root_path, alert: "Access Denied" unless @answer.user == current_user
   end
 end
