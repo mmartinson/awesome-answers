@@ -13,7 +13,7 @@ html
           | Categories
           span.caret
         ul.dropdown-menu.dropdown-right role="menu" aria-labelledby="categories-dropdown"
-          - @categories.each do |category|
+          - categories.each do |category|
             = link_to category.name, category
             br
 
@@ -27,7 +27,18 @@ html
           = link_to "New Question", new_question_path, class: "h5 brand-custom"
         li
           = link_to "Categories", categories_path, class: "h5 brand-custom"
-        
+        .pull-right#sign-in-status
+          - if user_signed_in?   
+            = link_to current_user.full_name, edit_user_registration_path
+            |  | 
+            = link_to "Sign Out", destroy_user_session_path, method: 'delete'
+          - else 
+            = link_to "Sign In", new_user_session_path
+  
+              /user_signed_in and current_user are devise helpers
+            /full_name is defined in user.rb
+
+
     br
       .container
         .row

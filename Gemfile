@@ -29,6 +29,8 @@ gem 'font-awesome-rails'
 gem "animate-rails"
 gem 'haml-rails'
 gem 'slim-rails'
+gem 'devise'
+gem 'html2slim'
 
 
 gem 'faker'

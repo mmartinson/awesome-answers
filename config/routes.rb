@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   #resources :questions     ###this will create crud routes by default 
 
   # get '/questions' => 'questions#index'

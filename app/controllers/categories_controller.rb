@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-  before_action :find_categories
 
   def index
     @categories = Category.order(:name)

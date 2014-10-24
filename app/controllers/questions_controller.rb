@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!, except: [:edit, :show]
   before_action :find_question, only: [:show, :update, :edit, :destroy]
-  before_action :find_categories
 
   def index
     @questions=Question.recent
@@ -52,10 +52,6 @@ class QuestionsController < ApplicationController
 
   def find_question
     @question = Question.find params[:id]
-  end
-
-  def find_categories
-    @categories = Category.order(:name)
   end
   
   def question_params
