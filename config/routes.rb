@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :answers, only: [] do 
     resources :favourites, only: [:create, :destroy]
   end
+  resources :favourites, only: [:index]
 
 
   #can change the helper by including  ", as: some_other_name"

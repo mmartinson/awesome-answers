@@ -13,7 +13,7 @@
         = link_to icon('thumbs-o-up large-icon'), question_likes_path(@question), method: :post
       - else
         = link_to icon('thumbs-up large-icon'), question_like_path(@question, @like), method: :delete
-      = @question.likes.count
+      = "(#{@question.likes.count})"
 
 
 
@@ -36,17 +36,20 @@
     br
     br
     h2 Answers
-    well
-      - @question.answers.each do |answer| 
+    - @question.answers.each do |answer| 
+      .well id=dom_id(answer)
+        h4 = answer.body 
         - if user_signed_in?
           -if favourite(answer).nil?
-            = link_to 'favourite', answer_favourites_path(answer), method: 'post'
+            = link_to icon('star-o'), answer_favourites_path(answer), method: 'post', class: 'iamyellow'
           -else
-            = link_to 'unfav', answer_favourite_path(answer, favourite(answer)), method: 'delete'
-          h5 = "(#{@favourites.where(answer_id: answer).count})"
-          /p = link_to '', question_answer_path(@question, answer), method: 'delete', data: {confirm: "Definitely   delete? You can't take this back!"}, class: "glyphicon glyphicon-remove" 
-        h4 = answer.body 
+            = link_to icon('star'), answer_favourite_path(answer, favourite(answer)), method: 'delete', class: 'iamyellow'
+            = "(#{@favourites.where(answer_id: answer).count})"
+        |  | 
+        = link_to icon('close'), question_answer_path(@question, answer), method: 'delete', data: {confirm: "Definitely   delete? You can't take this back!"}, class: 'iamred'
+
         h6 = "Submitted by #{answer_user_display(answer)}"
+    .clearfix
     .col-md-2.col-xs-0
 
   / {question_id: 33, answer_id: 2345}  can be passed alternatively to question_answer_path

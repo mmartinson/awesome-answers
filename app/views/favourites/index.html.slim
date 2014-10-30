@@ -1,0 +1,8 @@
+.container
+  .col-md-2.col-xs-0
+  .col-med-8.col-xs-12
+    - @favourites.each do |favourite|
+      = link_to "#{icon('star')} #{favourite.answer.body}".html_safe,
+             question_path(favourite.answer.question, anchor: dom_id(favourite.answer)), class: 'h5'
+      hr
+  .col-md-2.col-xs-0

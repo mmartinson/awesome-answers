@@ -1,7 +1,8 @@
 module AnswersHelper
   def answer_user_display(answer)
     if answer.user
-      answer.user.full_name
+      return answer.user.full_name unless answer.user.full_name == ''
+      answer.user.email
     else
       "Unknown User"
     end

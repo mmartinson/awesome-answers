@@ -27,6 +27,8 @@ html
           = link_to "New Question", new_question_path, class: "h5 brand-custom"
         li
           = link_to "Categories", categories_path, class: "h5 brand-custom"
+        li
+          = link_to "Favourites", favourites_path, class: 'h5 brand-custom' if user_signed_in?
         .pull-right#sign-in-status
           - if user_signed_in?   
             = link_to current_user.full_name, edit_user_registration_path
@@ -46,5 +48,6 @@ html
             p.alert.alert-info= flash[:notice]
           - elsif flash[:alert]
             p.alert.alert-danger= flash[:alert]
-        = yield
+        .row
+          = yield
 

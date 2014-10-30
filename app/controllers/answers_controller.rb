@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-  before_action :find_answer
   before_action :check_permissions, only: [:edit, :update, :destroy]
 
   def create
@@ -15,12 +14,6 @@ class AnswersController < ApplicationController
     end
   end 
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @answer = Answer.find params[:id]
     @question = Question.find params[:question_id]
@@ -33,11 +26,7 @@ class AnswersController < ApplicationController
   end
 
   private 
-
-  def find_answer
-    @answer = Answer.find params[:id]
-  end
-
+  
   def answer_params 
     params.require(:answer).permit(:body)
   end

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
 
   def full_name
-    if first_name || last_name
+    if first_name != '' || last_name != ''
       "#{first_name.try(:capitalize)} #{last_name.try(:capitalize)}".strip.squeeze(" ")  #try is a rails method
     else
       email
