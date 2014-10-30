@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
 
   has_many :questions, dependent: :nullify
   has_many :answers, dependent: :nullify
+  has_many :likes, dependent: :nullify
+  has_many :liked_questions, through: :likes, source: :question
+  has_many :favourites, dependent: :nullify 
+  has_many :favourited_answers, through: :favourite, source: :answer
 
 
   def full_name
@@ -17,6 +21,3 @@ class User < ActiveRecord::Base
   end 
 end
 
-#script to associatre users with q&a
-# q = Question.all
-# q.each do |question|

@@ -10,10 +10,18 @@ Rails.application.routes.draw do
   # get '/questions/:id/edit' => 'questions#edit', as: :edit_question
   # patch '/questions/:id' => 'questions#update'
   # delete '/questions/:id' => 'questions#destroy', as: :destroy_question
+
+
+
   resources :categories, only: [:index, :show]
   resources :questions do 
+    resources :likes, only: [:create, :destroy]
     resources :answers, only: [:create, :destroy]
   end
+  resources :answers, only: [] do 
+    resources :favourites, only: [:create, :destroy]
+  end
+
 
   #can change the helper by including  ", as: some_other_name"
   #gets you some_other_name_path

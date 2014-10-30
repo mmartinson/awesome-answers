@@ -22,6 +22,10 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
+    @like = @question.like_for(current_user) if user_signed_in?
+    #maybe don't need this because this has to be processed in helper, which can call the db itself
+    #but is used to easily display number of fav's per question
+    @favourites = Favourite.where(answer_id: @question.answers) #all favourites that belond to @question
   end
 
   def new

@@ -2,6 +2,11 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy  #could be :nullify instead of destroy
   belongs_to :user
   belongs_to :category
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
+
+
+
   validates :title, presence: true, uniqueness: {case_sensitive: false}    #can also pass => presence: {"message" => "title must be provided"} 
   validates :view_count, numericality: true    #can also pass numericality: {greater_than_or_equal_to: 0}
   # validates :title_is_longer_than_one_character
@@ -23,6 +28,11 @@ class Question < ActiveRecord::Base
 
   after_initialize :set_defaults
   before_save :capitalize_title
+
+
+  def like_for(user)
+    likes.find_by_user_id user
+  end
 
   private
 
